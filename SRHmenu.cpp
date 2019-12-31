@@ -266,7 +266,7 @@ void SRP(int nvertices, int tlinea){
         alinear(arbol1, soluciones, &contar1);
         ofstream myfile;
         temp=contar1;
-        k=ceil(temp/20);
+        k=ceil(temp/72);
         for (i=0; i<contar1; ++i) {
             if (i%k==0){
                 myfile.close();

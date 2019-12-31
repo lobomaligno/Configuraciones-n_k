@@ -158,7 +158,7 @@ int main(int argc, const char * argv[]) {
     FILE *finput2;
     char name[50];
     int nvertices, tlinea, tam, ns1, ns2, archivos;
-    sprintf(name, "soluciones%s.txt", argv[1]);
+    sprintf(name, "soluciones%s.txt", 0);
     finput1 = fopen(name,"r");
     if(finput1==NULL){
         printf("No esta el archivo\n");
@@ -178,10 +178,10 @@ int main(int argc, const char * argv[]) {
             fscanf(finput1,"%d",&lineas[j]);
         fscanf(finput1,"%lu",&hash);
         if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
-        ++contador;
+            ++contador;
     }
-    for (archivos=2; archivos<argc; ++archivos) {
-        sprintf(name, "soluciones%s.txt", argv[archivos]);
+    for (archivos=1; archivos<72; ++archivos) {
+        sprintf(name, "soluciones%s.txt", archivos);
         finput2 = fopen(name,"r");
         if(finput2==NULL){
             printf("No esta el archivo\n");
@@ -190,19 +190,19 @@ int main(int argc, const char * argv[]) {
         }
         fscanf(finput2,"%d",&ns2);
         if (ns2!=nvertices){
-            printf("Error\n");
+            printf("Error, el numero de vertices es incoerente.\n");
             system("pause");
             exit(23);
         }
         fscanf(finput2,"%d",&ns2);
         if (ns2!=tlinea){
-            printf("Error\n");
+            printf("Error, el numero de vertices por linea es incoerente.\n");
             system("pause");
             exit(23);
         }
         fscanf(finput2,"%d",&ns2);
         if (ns2!=tam){
-            printf("Error\n");
+            printf("Error, el tamaño de las soluciones parciales es incoerente.\n");
             system("pause");
             exit(23);
         }
@@ -214,10 +214,10 @@ int main(int argc, const char * argv[]) {
             if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
                 ++contador;
         }
-        printf("lotes %s y %s fusionados\n", argv[1], argv[archivos]);
+        printf("lotes fusionados\n");
     }
     ofstream myfile;
-    sprintf(name, "soluciones%s.txt", argv[1]);
+    sprintf(name, "soluciones%s.txt", 0);
     myfile.open (name);
     myfile<<nvertices<<" "<<tlinea<<" "<<tam<<" "<<contador<<"\n";
     escribir(arbol, tam, &myfile);
