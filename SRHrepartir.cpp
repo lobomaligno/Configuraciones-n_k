@@ -175,7 +175,7 @@ int main(int argc, const char * argv[]) {
     fscanf(finput1,"%d",&tam);
     fscanf(finput1,"%d",&ns);
     temp=ns;
-    k=ceil(temp/20);
+    k=ceil(temp/72);
     printf("%i\n", k);
     for (i=0; i<ns; ++i) {
         if (i%k==0){
