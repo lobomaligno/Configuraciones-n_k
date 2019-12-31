@@ -240,7 +240,7 @@ void SRP(int nvertices, int tlinea){
         Borrar(arbol1);
     }
     else{
-        for (etapa=tlinea+1; etapa<9; ++etapa){
+        for (etapa=tlinea+1; etapa<8; ++etapa){
             soluciones=(struct nodo**)malloc(sizeof(struct nodo*)*contar1);
             contar1=0;
             alinear(arbol1, soluciones, &contar1);
@@ -271,20 +271,20 @@ void SRP(int nvertices, int tlinea){
             if (i%k==0){
                 myfile.close();
                 myfile.open ("solucion"+std::to_string(i/k)+".txt");
-                myfile<<nvertices<<" "<<tlinea<<" "<<6<<" ";
+                myfile<<nvertices<<" "<<tlinea<<" "<<5<<" ";
                 if (i/k<19)
                     myfile<<k<<"\n";
                 else
                     myfile<<contar1-i<<"\n";
             }
-            for (a=0; a<6; ++a)
+            for (a=0; a<5; ++a)
                 myfile<<soluciones[i]->grafica[a]<<" ";
             myfile<<"\n";
         }
         myfile.close();
         free(soluciones);
         Borrar(arbol1);
-        sprintf(ejecutar, "./ciclosolucion1.sh %i %i", nvertices, 6);
+        sprintf(ejecutar, "./ciclosolucion1.sh %i %i", nvertices, 5);
         system(ejecutar);
 
     }
