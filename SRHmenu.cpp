@@ -269,7 +269,7 @@ void SRP(int nvertices, int tlinea){
         k=floor(temp/72);
         printf("k=%i\n", k);
         for (i=0; i<contar1; ++i) {
-            if (i%k==0){
+            if (i%k==0 && i/k<72){
                 myfile.close();
                 myfile.open ("solucion"+std::to_string(i/k)+".txt");
                 printf("solucion%i.txt abieto\n", (i/k));
