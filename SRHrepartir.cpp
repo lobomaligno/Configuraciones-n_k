@@ -166,7 +166,7 @@ int main(int argc, const char * argv[]) {
     printf("%s\n", name);
     finput1 = fopen(name,"r");
     if(finput1==NULL){
-        printf("No esta el archivo\n");
+        printf("Repartir: No esta el archivo\n");
         system("pause");
         exit(23);
     }
