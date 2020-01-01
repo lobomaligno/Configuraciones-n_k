@@ -198,7 +198,7 @@ void SRP(int nvertices, int tlinea){
     int lineas[nvertices], lab[2*nvertices], ptn[2*nvertices], orbits[2*nvertices];
     int i, k, a, contar1=0, contar2, etapa;
     char ejecutar[25];
-    float temp;
+    double temp;
     struct nodo *arbol1=NULL, *arbol2=NULL, *cambio;
     struct nodo **soluciones;
     for (i=0, k=0; i<tlinea; ++i) {
@@ -266,15 +266,15 @@ void SRP(int nvertices, int tlinea){
         alinear(arbol1, soluciones, &contar1);
         ofstream myfile;
         temp=contar1;
-        k=ceil(temp/72);
+        k=floor(temp/72);
         printf("k=%i\n", k);
         for (i=0; i<contar1; ++i) {
             if (i%k==0){
                 myfile.close();
                 myfile.open ("solucion"+std::to_string(i/k)+".txt");
-                printf("solucion%i.txt abieto", (i/k));
+                printf("solucion%i.txt abieto\n", (i/k));
                 myfile<<nvertices<<" "<<tlinea<<" "<<5<<" ";
-                if (i/k<19)
+                if (i/k<71)
                     myfile<<k<<"\n";
                 else
                     myfile<<contar1-i<<"\n";
