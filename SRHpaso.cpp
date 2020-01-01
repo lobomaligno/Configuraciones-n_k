@@ -241,7 +241,7 @@ int main(int argc, const char * argv[]) {
     if (tam<nvertices-6) {
         for (k=0; k<contar1; ++k){
             for (a=0; a<tam; ++a)
-            fscanf(finput,"%d",&lineas[a+tlinea]);
+                fscanf(finput,"%d",&lineas[a+tlinea]);
             llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, tlinea+tam, &arbol, &contar2, 0);
         }
         sprintf(name, "soluciones%s.txt", argv[1]);
@@ -254,7 +254,7 @@ int main(int argc, const char * argv[]) {
     else{
         for (k=0; k<contar1; ++k){
             for (a=0; a<tam; ++a)
-            fscanf(finput,"%d",&lineas[a+tlinea]);
+                fscanf(finput,"%d",&lineas[a+tlinea]);
             llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, tlinea+tam, &arbol, &contar2, 2);
         }
         sprintf(name, "S%stotales.txt", argv[1]);

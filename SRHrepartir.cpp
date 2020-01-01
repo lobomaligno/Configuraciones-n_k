@@ -175,14 +175,14 @@ int main(int argc, const char * argv[]) {
     fscanf(finput1,"%d",&tam);
     fscanf(finput1,"%d",&ns);
     temp=ns;
-    k=ceil(temp/72);
-    printf("%i\n", k);
+    k=floor(temp/72);
+    printf("k=%i\n", k);
     for (i=0; i<ns; ++i) {
-        if (i%k==0){
+        if (i%k==0  && i/k<72){
             myfile.close();
             myfile.open ("solucion"+std::to_string(i/k)+".txt");
             myfile<<nvertices<<" "<<tlinea<<" "<<tam<<" ";
-            if (i/k<19)
+            if (i/k<71)
                 myfile<<k<<"\n";
             else
                 myfile<<ns-i<<"\n";
