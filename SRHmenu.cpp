@@ -272,7 +272,7 @@ void SRP(int nvertices, int tlinea){
             if (i%k==0){
                 myfile.close();
                 myfile.open ("solucion"+std::to_string(i/k)+".txt");
-                printf("solucion"+std::to_string(i/k)+".txt abieto");
+                printf("solucion%i.txt abieto", (i/k));
                 myfile<<nvertices<<" "<<tlinea<<" "<<5<<" ";
                 if (i/k<19)
                     myfile<<k<<"\n";
