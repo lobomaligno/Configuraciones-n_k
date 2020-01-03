@@ -181,7 +181,7 @@ int main(int argc, const char * argv[]) {
             ++contador;
     }
     for (archivos=1; archivos<72; ++archivos) {
-        sprintf(name, "soluciones%s.txt", archivos);
+        sprintf(name, "soluciones%d.txt", archivos);
         printf("Fusion: Integrando el archivo %s\n", name);
         finput2 = fopen(name,"r");
         if(finput2==NULL){
