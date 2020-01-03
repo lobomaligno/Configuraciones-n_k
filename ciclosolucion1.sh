@@ -1,11 +1,14 @@
 #!/bin/bash
 i=0
 echo "Paso"
+let start=`date +%s`
 while [ 71 -ge $i ]
 do
     ./paso $i
     let i=$i+1
 done
+let end=`date +%s`
+let runtime=$end-$start
 let i=$1-$2
 #echo "$i"
 if [ $i = 6 ];
