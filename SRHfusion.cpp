@@ -219,7 +219,7 @@ int main(int argc, const char * argv[]) {
         //printf("Contador=%d\n", contador);
         //printf("lotes fusionados\n");
     }
-    printf("%d soluciones parciales en la etapa %d\n", contador, tam);
+    printf("%d soluciones parciales en la etapa %d\n", contador, tam-1);
     ofstream myfile;
     sprintf(name, "soluciones%s.txt", "0");
     myfile.open (name);
