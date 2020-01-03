@@ -9,6 +9,7 @@ do
 done
 let end=`date +%s`
 let runtime=$end-$start
+echo "Tardo: +$runtime"
 let i=$1-$2
 #echo "$i"
 if [ $i = 6 ];
@@ -26,7 +27,7 @@ else
         ./fusion
     let end=`date +%s`
     let runtime=$end-$start
-    echo "Tardo: +$runtime"
+    echo "Tardo: $runtime"
     let start=`date +%s`
     echo "repartir"
         ./repartir 0
