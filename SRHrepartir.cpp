@@ -163,25 +163,25 @@ int main(int argc, const char * argv[]) {
     long hash;
     //printf("se imprime %i %s %s %s \n", argc,argv[0], argv[1], argv[2]);
     sprintf(name, "soluciones%s.txt", argv[1]);
-    printf("%s\n", name);
+    //printf("%s\n", name);
     finput1 = fopen(name,"r");
     if(finput1==NULL){
         printf("Repartir: No esta el archivo\n");
         system("pause");
         exit(23);
     }
-    printf("Empieza la reparticion\n");
+    //printf("Empieza la reparticion\n");
     fscanf(finput1,"%d",&nvertices);
-    printf("nvertices=%d\n", nvertices);
+    //printf("nvertices=%d\n", nvertices);
     fscanf(finput1,"%d",&tlinea);
-    printf("tlinea=%d\n", tlinea);
+    //printf("tlinea=%d\n", tlinea);
     fscanf(finput1,"%d",&tam);
-    printf("tam=%d\n", tam);
+    //printf("tam=%d\n", tam);
     fscanf(finput1,"%d",&ns);
-    printf("ns=%d\n", ns);
+    //printf("ns=%d\n", ns);
     temp=ns;
     k=floor(temp/72);
-    printf("k=%i\n", k);
+    //printf("k=%i\n", k);
     for (i=0; i<ns; ++i) {
         if (i%k==0  && i/k<72){
             myfile.close();
