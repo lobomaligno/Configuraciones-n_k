@@ -28,6 +28,6 @@ else
     let end=`date +%s`
     let runtime=$end-$start
     echo "Tardo: $runtime"
-    ./repartir
+    ./repartir 0
     exit
 fi
