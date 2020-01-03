@@ -158,7 +158,7 @@ int main(int argc, const char * argv[]) {
     FILE *finput2;
     char name[50];
     int nvertices, tlinea, tam, ns1, ns2, archivos;
-    sprintf(name, "soluciones%s.txt", 0);
+    sprintf(name, "soluciones%s.txt", "0");
     finput1 = fopen(name,"r");
     if(finput1==NULL){
         printf("Fusion: No esta el archivo %s\n", name);
