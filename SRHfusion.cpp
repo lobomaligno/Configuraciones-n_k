@@ -220,7 +220,7 @@ int main(int argc, const char * argv[]) {
         printf("lotes fusionados\n");
     }
     ofstream myfile;
-    sprintf(name, "soluciones%s.txt", 0);
+    sprintf(name, "soluciones%s.txt", "0");
     myfile.open (name);
     myfile<<nvertices<<" "<<tlinea<<" "<<tam<<" "<<contador<<"\n";
     escribir(arbol, tam, &myfile);
