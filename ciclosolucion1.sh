@@ -14,18 +14,21 @@ if [ $i = 6 ];
     let start=`date +%s`
         ./ciclosolucionf.sh
     let end=`date +%s`
-    echo "Tardo: +$($end-$start)"
+    let runtime=$end-$start
+    echo "Tardo: +$runtime"
 exit 0
 else
     echo "fusion"
     let start=`date +%s`
         ./fusion
     let end=`date +%s`
-    echo "Tardo: +$($end-$start)"
+    let runtime=$end-$start
+    echo "Tardo: +$runtime"
     let start=`date +%s`
     echo "repartir"
         ./repartir 0
     let end=`date +%s`
-    echo "Tardo: +$($end-$start)"
+    let runtime=$end-$start
+    echo "Tardo: +$runtime"
     exit
 fi
