@@ -170,10 +170,15 @@ int main(int argc, const char * argv[]) {
         system("pause");
         exit(23);
     }
+    printf("Empieza la reparticion\n");
     fscanf(finput1,"%d",&nvertices);
+    printf("nvertices=%d\n", nvertices);
     fscanf(finput1,"%d",&tlinea);
+    printf("tlinea=%d\n", tlinea);
     fscanf(finput1,"%d",&tam);
+    printf("tam=%d\n", tam);
     fscanf(finput1,"%d",&ns);
+    printf("ns=%d\n", ns);
     temp=ns;
     k=floor(temp/72);
     printf("k=%i\n", k);
