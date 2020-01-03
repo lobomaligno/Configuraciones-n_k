@@ -180,6 +180,7 @@ int main(int argc, const char * argv[]) {
         if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
             ++contador;
     }
+    printf("Contador=%d\n", contador);
     for (archivos=1; archivos<72; ++archivos) {
         sprintf(name, "soluciones%d.txt", archivos);
         printf("Fusion: Integrando el archivo %s\n", name);
@@ -215,6 +216,7 @@ int main(int argc, const char * argv[]) {
             if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
                 ++contador;
         }
+        printf("Contador=%d\n", contador);
         printf("lotes fusionados\n");
     }
     ofstream myfile;
