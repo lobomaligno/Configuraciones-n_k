@@ -219,7 +219,7 @@ int main(int argc, const char * argv[]) {
     sprintf(name, "solucion%s.txt", argv[1]);
     finput = fopen(name,"r");
     if(finput==NULL){
-        printf("No esta el archivo %s\n", name);
+        printf("Paso: No esta el archivo %s\n", name);
         system("pause");
         exit(23);
     }

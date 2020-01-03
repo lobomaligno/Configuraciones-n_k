@@ -161,7 +161,7 @@ int main(int argc, const char * argv[]) {
     sprintf(name, "soluciones%s.txt", 0);
     finput1 = fopen(name,"r");
     if(finput1==NULL){
-        printf("No esta el archivo\n");
+        printf("Fusion: No esta el archivo %s\n", name);
         system("pause");
         exit(23);
     }
