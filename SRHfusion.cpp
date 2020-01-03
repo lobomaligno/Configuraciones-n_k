@@ -182,6 +182,7 @@ int main(int argc, const char * argv[]) {
     }
     for (archivos=1; archivos<72; ++archivos) {
         sprintf(name, "soluciones%s.txt", archivos);
+        printf("Fusion: Integrando el archivo %s\n", name);
         finput2 = fopen(name,"r");
         if(finput2==NULL){
             printf("No esta el archivo\n");
