@@ -9,7 +9,7 @@ do
 done
 let end=`date +%s`
 let runtime=$end-$start
-echo "Tardo: +$runtime"
+echo "Tardo: $runtime"
 let i=$1-$2
 #echo "$i"
 if [ $i = 6 ];
@@ -19,7 +19,7 @@ if [ $i = 6 ];
         ./ciclosolucionf.sh
     let end=`date +%s`
     let runtime=$end-$start
-    echo "Tardo: +$runtime"
+    echo "Tardo: $runtime"
 exit 0
 else
     echo "fusion"
@@ -33,6 +33,6 @@ else
         ./repartir 0
     let end=`date +%s`
     let runtime=$end-$start
-    echo "Tardo: +$runtime"
+    echo "Tardo: $runtime"
     exit
 fi
