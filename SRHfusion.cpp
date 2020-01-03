@@ -180,10 +180,10 @@ int main(int argc, const char * argv[]) {
         if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
             ++contador;
     }
-    printf("Contador=%d\n", contador);
+    //printf("Contador=%d\n", contador);
     for (archivos=1; archivos<72; ++archivos) {
         sprintf(name, "soluciones%d.txt", archivos);
-        printf("Fusion: Integrando el archivo %s\n", name);
+        //printf("Fusion: Integrando el archivo %s\n", name);
         finput2 = fopen(name,"r");
         if(finput2==NULL){
             printf("No esta el archivo\n");
@@ -216,9 +216,10 @@ int main(int argc, const char * argv[]) {
             if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
                 ++contador;
         }
-        printf("Contador=%d\n", contador);
-        printf("lotes fusionados\n");
+        //printf("Contador=%d\n", contador);
+        //printf("lotes fusionados\n");
     }
+    printf("%d soluciones parciales en la etapa %d\n", contador, tam);
     ofstream myfile;
     sprintf(name, "soluciones%s.txt", "0");
     myfile.open (name);

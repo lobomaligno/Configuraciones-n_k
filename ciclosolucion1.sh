@@ -6,7 +6,7 @@ do
     let i=$i+1
 done
 let i=$1-$2
-echo "$i"
+#echo "$i"
 if [ $i = 6 ];
     then
     ./ciclosolucionf.sh
