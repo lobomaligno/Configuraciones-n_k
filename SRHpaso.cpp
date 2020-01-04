@@ -264,6 +264,6 @@ int main(int argc, const char * argv[]) {
         myfile.close();
     }
     Borrar(arbol);
-    printf("Paso %s\n", argv[1]);
+    //printf("Paso %s\n", argv[1]);
     return 0;
 }
