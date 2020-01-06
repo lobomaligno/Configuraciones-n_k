@@ -227,7 +227,7 @@ int main(int argc, const char * argv[]) {
         printf("Existen %d configuraciones %d_%d\n", contador, nvertices, tlinea);
     }
     for (archivos=0; archivos<72; ++archivos) {
-        sprintf("rm soluciones%d.txt", archivos);
+        sprintf(name, "rm soluciones%d.txt", archivos);
         system(name);
     }
     ofstream myfile;
