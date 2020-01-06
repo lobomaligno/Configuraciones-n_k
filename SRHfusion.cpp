@@ -219,8 +219,8 @@ int main(int argc, const char * argv[]) {
         //printf("Contador=%d\n", contador);
         //printf("lotes fusionados\n");
     }
-    printf("Fusion: tam=%i", tam);
-    if(tam<nvertices-2*tlinea){
+    //printf("Fusion: tam=%i", tam);
+    if(tam<nvertices-tlinea){
         printf("%d soluciones parciales en la etapa %d\n", contador, tam-1);
     }
     else{
