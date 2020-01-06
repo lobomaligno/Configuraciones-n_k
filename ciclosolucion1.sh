@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "nvertices=$1, tam=$2, tlinea=$3"
 i=0
 echo "Paso"
 let start=`date +%s`
