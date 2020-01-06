@@ -268,7 +268,7 @@ int main(int argc, const char * argv[]) {
     */
     //Vercion 2
     if (tam<nvertices-2*tlinea) {
-        avance=1
+        avance=1;
     }
     else{
         avance=tlinea;
