@@ -200,6 +200,8 @@ int main(int argc, const char * argv[]) {
         myfile<<"\n";
     }
     myfile.close();
-    sprintf(name, "./ciclosolucion1.sh %i %i", nvertices, tam);
-    system(name);
+    if(tam<nvertices){
+        sprintf(name, "./ciclosolucion1.sh %i %i", nvertices, tam);
+        system(name);
+    }
 }

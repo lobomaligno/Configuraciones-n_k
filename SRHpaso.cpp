@@ -215,7 +215,7 @@ void llenarlineas(int *lineas, int *lab, int *ptn, int *orbits, int nvertices, i
 int main(int argc, const char * argv[]) {
     FILE *finput;
     char name[50];
-    int nvertices, tlinea, tam, i, k, a, contar1, contar2;
+    int nvertices, tlinea, tam, i, k, a, contar1, contar2, avance;
     sprintf(name, "solucion%s.txt", argv[1]);
     finput = fopen(name,"r");
     if(finput==NULL){
@@ -238,6 +238,8 @@ int main(int argc, const char * argv[]) {
             lineas[i]|=(1<<++k);
     }
     contar2=0;
+    //Vercion 1
+    /*
     if (tam<nvertices-6) {
         for (k=0; k<contar1; ++k){
             for (a=0; a<tam; ++a)
@@ -263,6 +265,26 @@ int main(int argc, const char * argv[]) {
         escribir2(arbol, &myfile);
         myfile.close();
     }
+    */
+    //Vercion 2
+    if (tam<nvertices-2*tlinea) {
+        avance=1
+    }
+    else{
+        avance=tlinea;
+    }
+    for (k=0; k<contar1; ++k){
+        for (a=0; a<tam; ++a){
+            fscanf(finput,"%d",&lineas[a+tlinea]);
+        }
+        llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, tlinea+tam, &arbol, &contar2, avance-1);
+    }
+    sprintf(name, "soluciones%s.txt", argv[1]);
+    ofstream myfile;
+    myfile.open (name);
+    myfile<<nvertices<<" "<<tlinea<<" "<<tam+avance<<" "<<contar2<<"\n";
+    escribir(arbol, tam+avance, &myfile);
+    myfile.close();
     Borrar(arbol);
     //printf("Paso %s\n", argv[1]);
     return 0;
