@@ -286,7 +286,8 @@ int main(int argc, const char * argv[]) {
     escribir(arbol, tam+avance, &myfile);
     myfile.close();
     Borrar(arbol);
-    system("rm solucion%s.txt", argv[1]);
+    sprintf(name, "rm solucion%s.txt", argv[1]);
+    system(name);
     //printf("Paso %s\n", argv[1]);
     return 0;
 }

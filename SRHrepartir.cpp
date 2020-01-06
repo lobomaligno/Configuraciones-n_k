@@ -201,7 +201,8 @@ int main(int argc, const char * argv[]) {
     }
     myfile.close();
     if(tam<nvertices){
-        system("rm %s", name);
+        sprintf(name, "rm soluciones%s.txt", argv[1]);
+        system(name);
         sprintf(name, "./ciclosolucion1.sh %i %i %i", nvertices, tam, tlinea);
         system(name);
     }
