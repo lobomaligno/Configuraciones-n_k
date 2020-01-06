@@ -18,7 +18,7 @@ let start=`date +%s`
 let end=`date +%s`
 let runtime=$end-$start
 echo "Tardo: $runtime"
-if [ $2 -lt $((2*$3)) ]; then
+if [ $2 -lt $(($1-2*$3)) ]; then
     ./repartir 0
 fi
 exit
