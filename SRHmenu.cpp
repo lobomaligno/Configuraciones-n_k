@@ -286,7 +286,7 @@ void SRP(int nvertices, int tlinea){
         myfile.close();
         free(soluciones);
         Borrar(arbol1);
-        sprintf(ejecutar, "./ciclosolucion1.sh %i %i", nvertices, 5);
+        sprintf(ejecutar, "./ciclosolucion1.sh %i %i", nvertices, 5, tlinea);
         system(ejecutar);
 
     }

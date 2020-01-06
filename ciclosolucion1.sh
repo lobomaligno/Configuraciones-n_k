@@ -11,17 +11,13 @@ wait
 let end=`date +%s`
 let runtime=$end-$start
 echo "Tardo: $runtime"
-let i=$1-$2
-#if [ $i = 6 ]; then
-#    ./ciclosolucionf.sh
-#exit 0
-#else
 echo "fusion"
 let start=`date +%s`
 ./fusion
 let end=`date +%s`
 let runtime=$end-$start
 echo "Tardo: $runtime"
-./repartir 0
+if [ $2 < 2*$3 ]; then
+    ./repartir 0
+fi
 exit
-#fi

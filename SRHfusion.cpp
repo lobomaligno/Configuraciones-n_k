@@ -219,7 +219,12 @@ int main(int argc, const char * argv[]) {
         //printf("Contador=%d\n", contador);
         //printf("lotes fusionados\n");
     }
-    printf("%d soluciones parciales en la etapa %d\n", contador, tam-1);
+    if(tam<nvertices-2*tlinea){
+        printf("%d soluciones parciales en la etapa %d\n", contador, tam-1);
+    }
+    else{
+        printf("Existen %d configuraciones %d_%d\n", contador, nvertices, tlinea);
+    }
     ofstream myfile;
     sprintf(name, "soluciones%s.txt", "0");
     myfile.open (name);
