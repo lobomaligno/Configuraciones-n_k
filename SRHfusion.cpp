@@ -158,7 +158,7 @@ int main(int argc, const char * argv[]) {
     FILE *finput2;
     char name[50];
     int nvertices, tlinea, tam, ns1, ns2, archivos;
-    sprintf(name, "soluciones%s.txt", "0");
+    sprintf(name, "soluciones0.txt");
     finput1 = fopen(name,"r");
     if(finput1==NULL){
         printf("Fusion: No esta el archivo %s\n", name);
@@ -226,8 +226,11 @@ int main(int argc, const char * argv[]) {
     else{
         printf("Existen %d configuraciones %d_%d\n", contador, nvertices, tlinea);
     }
+    for (archivos=0; archivos<72; ++archivos) {
+        system("rm soluciones%d.txt", archivos);
+    }
     ofstream myfile;
-    sprintf(name, "soluciones%s.txt", "0");
+    sprintf(name, "soluciones0.txt");
     myfile.open (name);
     myfile<<nvertices<<" "<<tlinea<<" "<<tam<<" "<<contador<<"\n";
     escribir(arbol, tam, &myfile);
