@@ -221,7 +221,7 @@ int main(int argc, const char * argv[]) {
     }
     //printf("Fusion: tam=%i", tam);
     if(tam<nvertices-tlinea){
-        printf("%d soluciones parciales en la etapa %d\n", contador, tam-1);
+        printf("%d soluciones parciales en la etapa %d\n", contador, tam);
     }
     else{
         printf("Existen %d configuraciones %d_%d\n", contador, nvertices, tlinea);

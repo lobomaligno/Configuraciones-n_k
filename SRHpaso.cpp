@@ -83,21 +83,22 @@ void Borrar(struct nodo *pi){
         free(pi);
     }
 }
-void imprimirlineas(int nvertices, int tlinea, int *lineas, int tam, ofstream *myfile){
+void imprimirlineas(int nvertices, int tlinea, int *lineas, int tam){
     int i, j, nencontrados;
     for (i=0; i<tam; ++i) {
-        *myfile<<"(";
+        printf("(");
         for (j=0, nencontrados=0; j<nvertices && nencontrados<tlinea; ++j){
             if (lineas[i]&(1<<j)){
                 ++nencontrados;
-                *myfile<<j+1;
-                if (nencontrados<tlinea)
-                    *myfile<<" ";
+                printf("%d", j+1);
+                if (nencontrados<tlinea){
+                    printf(" ");
+		}
             }
         }
-        *myfile<<")";
+        printf(")");
     }
-    *myfile<<"\n";
+    printf("\n");
 }
 void registrarlinea(int *lineas, int tam, ofstream *myfile, unsigned long hash){
     for (int i=0; i<tam; ++i)
@@ -227,6 +228,7 @@ int main(int argc, const char * argv[]) {
     fscanf(finput,"%d",&tlinea);
     fscanf(finput,"%d",&tam);
     fscanf(finput,"%d",&contar1);
+    //printf("nvertices=%d, tlinea=%d, tam=%d y contar=%d\n", nvertices, tlinea, tam, contar1);
     int lineas[nvertices], lab[2*nvertices], ptn[2*nvertices], orbits[2*nvertices];
     for (i=0; i<2*nvertices; ++i)
         lab[i]=i;
@@ -277,6 +279,7 @@ int main(int argc, const char * argv[]) {
         for (a=0; a<tam; ++a){
             fscanf(finput,"%d",&lineas[a+tlinea]);
         }
+	//imprimirlineas(nvertices, tlinea, lineas, tlinea+tam);
         llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, tlinea+tam, &arbol, &contar2, avance-1);
     }
     sprintf(name, "soluciones%s.txt", argv[1]);
@@ -288,6 +291,6 @@ int main(int argc, const char * argv[]) {
     Borrar(arbol);
     sprintf(name, "rm solucion%s.txt", argv[1]);
     system(name);
-    //printf("Paso %s\n", argv[1]);
+    //printf("Paso en %s dio %d soluciones\n", argv[1], contar2);
     return 0;
 }
