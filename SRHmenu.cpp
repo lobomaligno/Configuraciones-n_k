@@ -12,6 +12,7 @@
 #include <fstream>
 #include <string>
 #include <cmath>
+#include "SRHfunciones.h"
 using namespace std;
 unsigned long obtenerhash(graph *g, int tam){
     hash<string> h;
@@ -137,54 +138,6 @@ void graficar(graph *g, int tgrafica, int *lineas, int terminado, int nvertices,
                     if (lineas[i]&(1<<k))
                         ADDONEEDGE(g, j, k, 1);
             }
-}
-void llenarlineas(int *lineas, int *lab, int *ptn, int *orbits, int nvertices, int tlinea, int etapa, struct nodo **arbol, int *contar, int salto){
-    unsigned long hash;
-    int k=1, i, e;
-    int linea[tlinea], S[tlinea];
-    graph solucion[nvertices+etapa+1], canon[nvertices+etapa+1];
-    static DEFAULTOPTIONS_GRAPH(options);
-    options.getcanon = TRUE;
-    options.defaultptn=TRUE;
-    statsblk stats;
-    for (i=0; i<nvertices && (!(lineas[etapa-1]&(1<<i))); ++i);
-    while (buscarvertice(lineas, etapa, i, tlinea)==ENCONTRADO)
-        ++i;
-    linea[0]=i;
-    S[1]=linea[0]+1;
-    while (k>0) {
-        while (S[k]<=nvertices-tlinea+k) {
-            linea[k]=S[k];
-            ++S[k];
-            if (validar(lineas, linea, k, linea[k], etapa, tlinea)==VALIDO) {
-                if (k==tlinea-1){
-                    lineas[etapa]=0;
-                    for (i=0; i<tlinea; ++i)
-                        lineas[etapa]|=(1<<linea[i]);
-                    if (salto==0){
-                        graficar(solucion, nvertices+etapa+1, lineas, etapa+1, nvertices, tlinea);
-                        densenauty(solucion, lab, ptn, orbits, &options, &stats, 1, nvertices+etapa+1, canon);
-                        hash=obtenerhash(canon, nvertices+etapa+1);
-                        //hash=hashgraph(canon, 1, nvertices+etapa+1,0);
-                        e=encontrar_o_agregar(arbol, hash, &lineas[tlinea], etapa-tlinea+1);
-                        if (e!=ENCONTRADO){
-                            ++*contar;
-                            if(etapa+1==nvertices)
-                                imprimirlineas(nvertices, tlinea, lineas, etapa+1);
-                            //printf(" %lu\n", hash);
-                        }
-                    }
-                    else
-                        llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, etapa+1, arbol, contar, salto-1);
-                }
-                else{
-                    ++k;
-                    S[k]=S[k-1];
-                }
-            }
-        }
-        --k;
-    }
 }
 void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
     if (P!=NULL) {
