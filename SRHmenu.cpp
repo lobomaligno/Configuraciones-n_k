@@ -109,16 +109,6 @@ int buscarpar(int *lineas, int etapa, int a, int b){
             return ENCONTRADO;
     return NO_ENCONTRADO;
 }
-int buscarvertice(int *lineas, int etapa, int vertice, int tlinea){
-    int i, contador;
-    for (i=0, contador=0; i<etapa; i++)
-        if (lineas[i]&(1<<vertice)){
-            contador++;
-            if (contador==tlinea)
-                return ENCONTRADO;
-        }
-    return NO_ENCONTRADO;
-}
 int validar(int *lineas, int *linea, int k, int vertice, int paso, int tlinea){
     if(buscarvertice(lineas, paso, vertice, tlinea)==ENCONTRADO)
         return INVALIDO;

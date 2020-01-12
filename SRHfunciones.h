@@ -7,6 +7,16 @@
 
 #ifndef SRHfunciones_h
 #define SRHfunciones_h
+int buscarvertice(int *lineas, int etapa, int vertice, int tlinea){
+    int i, contador;
+    for (i=0, contador=0; i<etapa; i++)
+        if (lineas[i]&(1<<vertice)){
+            contador++;
+            if (contador==tlinea)
+                return ENCONTRADO;
+        }
+    return NO_ENCONTRADO;
+}
 void llenarlineas(int *lineas, int *lab, int *ptn, int *orbits, int nvertices, int tlinea, int etapa, struct nodo **arbol, int *contar, int salto){
     unsigned long hash;
     int k=1, i, e;
