@@ -163,21 +163,22 @@ void SRP(int nvertices, int tlinea){
     for (i=0; i<2*nvertices; i++)
         lab[i]=i;
     llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, tlinea, &arbol1, &contar1, 0);
-    if(nvertices<12||tlinea==4){
-        for (etapa=tlinea+1; etapa<nvertices-2; ++etapa){
+    printf("%i soluciones parciales en la etapa %i\n", contar1, 1);
+    if(nvertices<12||(tlinea==4 && nvertices<17)){
+        for (etapa=tlinea+1; etapa<nvertices-tlinea+1; ++etapa){
             soluciones=(struct nodo**)malloc(sizeof(struct nodo*)*contar1);
             contar1=0;
             alinear(arbol1, soluciones, &contar1);
             for (k=0, contar2=0; k<contar1; ++k){
                 for (a=tlinea; a<etapa; ++a)
                     lineas[a]=soluciones[k]->grafica[a-tlinea];
-                if (etapa<nvertices-3)
+                if (etapa<nvertices-tlinea)
                     llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, etapa, &arbol2, &contar2, 0);
                 else
-                    llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, etapa, &arbol2, &contar2, 2);
+                    llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, etapa, &arbol2, &contar2, tlinea-1);
             }
-            if (etapa<nvertices-3){
-                printf("%i soluciones parciales en la etapa %i\n", contar2, etapa-tlinea);
+            if (etapa<nvertices-tlinea){
+                printf("%i soluciones parciales en la etapa %i\n", contar2, etapa-tlinea+1);
             }
             else{
                 printf("%i soluciones totales.\n", contar2);
@@ -203,7 +204,7 @@ void SRP(int nvertices, int tlinea){
                 llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, etapa, &arbol2, &contar2, 0);
             }
             if (etapa<8)
-                printf("%i soluciones parciales en la etapa %i\n", contar2, etapa-tlinea);
+                printf("%i soluciones parciales en la etapa %i\n", contar2, etapa-tlinea+1);
             else
                 printf("%i soluciones guardadas.\n", contar2);
             contar1=contar2;
@@ -226,22 +227,21 @@ void SRP(int nvertices, int tlinea){
                 myfile.close();
                 myfile.open ("solucion"+std::to_string(i/k)+".txt");
                 //printf("solucion%i.txt abieto\n", (i/k));
-                myfile<<nvertices<<" "<<tlinea<<" "<<5<<" ";
+                myfile<<nvertices<<" "<<tlinea<<" "<<8-tlinea<<" ";
                 if (i/k<71)
                     myfile<<k<<"\n";
                 else
                     myfile<<contar1-i<<"\n";
             }
-            for (a=0; a<5; ++a)
+            for (a=0; a<8-tlinea; ++a)
                 myfile<<soluciones[i]->grafica[a]<<" ";
             myfile<<"\n";
         }
         myfile.close();
         free(soluciones);
         Borrar(arbol1);
-        sprintf(ejecutar, "./ciclosolucion1.sh %i %i %i", nvertices, 5, tlinea);
+        sprintf(ejecutar, "./ciclosolucion1.sh %i %i %i", nvertices, 8-tlinea, tlinea);
         system(ejecutar);
-
     }
 }
 int main(int argc, const char * argv[]) {

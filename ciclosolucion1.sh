@@ -1,6 +1,6 @@
 #!/bin/bash
 i=0
-echo "nvertices=$1, tam=$2, tlinea=$3"
+#echo "nvertices=$1, tam=$2, tlinea=$3"
 echo "Paso"
 let start=`date +%s`
 while [ 71 -ge $i ]
