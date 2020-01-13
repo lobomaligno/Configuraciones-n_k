@@ -158,8 +158,9 @@ void llenarlineas(int *lineas, int *lab, int *ptn, int *orbits, int nvertices, i
                         e=encontrar_o_agregar(arbol, hash, &lineas[tlinea], etapa-tlinea+1);
                         if (e!=ENCONTRADO){
                             ++*contar;
-                            if(etapa+1==nvertices)
+                            if(etapa+1==nvertices && (nvertices<12||(tlinea==4 && nvertices<17))){
                                 imprimirlineas(nvertices, tlinea, lineas, etapa+1);
+                            }
                             //printf(" %lu\n", hash);
                         }
                     }
