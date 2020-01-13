@@ -12,6 +12,36 @@ unsigned long obtenerhash(graph *g, int tam){
     string Hash=string((char*)g, tam*sizeof(graph));
     return h(Hash);
 }
+int encontrar_o_agregar(struct nodo **raiz, unsigned long hash, int *grafica, int tgrafica){
+    struct nodo *padre;
+    int comparacion;
+    if(buscarhash(*raiz, hash, &padre, &comparacion)==NO_ENCONTRADO){
+        int k;
+        struct nodo *N= (struct nodo *)malloc(sizeof(struct nodo));
+        if (N==NULL)
+            return 2;
+        N->hash=hash;
+        N->grafica=(int *)malloc(sizeof(int)*tgrafica);
+        if (N->grafica==NULL){
+            free(N);
+            return 2;
+        }
+        N->menores=NULL;
+        N->mayores=NULL;
+        for (k = 0; k < tgrafica; ++k)
+            N->grafica[k]=grafica[k];
+        if (*raiz==NULL)
+            *raiz=N;
+        else{
+            if (comparacion==MAYOR)
+                padre->mayores=N;
+            else
+                padre->menores=N;
+        }
+        return NO_ENCONTRADO;
+    }
+    return ENCONTRADO;
+}
 int buscarpar(int *lineas, int etapa, int a, int b){
     int i;
     b=(1<<b);
