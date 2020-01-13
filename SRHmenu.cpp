@@ -14,11 +14,6 @@
 #include <cmath>
 #include "SRHfunciones.h"
 using namespace std;
-unsigned long obtenerhash(graph *g, int tam){
-    hash<string> h;
-    string Hash=string((char*)g, tam*sizeof(graph));
-    return h(Hash);
-}
 struct nodo{
     unsigned long hash;
     int *grafica;

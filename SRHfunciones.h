@@ -7,6 +7,11 @@
 
 #ifndef SRHfunciones_h
 #define SRHfunciones_h
+unsigned long obtenerhash(graph *g, int tam){
+    hash<string> h;
+    string Hash=string((char*)g, tam*sizeof(graph));
+    return h(Hash);
+}
 int buscarpar(int *lineas, int etapa, int a, int b){
     int i;
     b=(1<<b);
