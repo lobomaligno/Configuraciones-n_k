@@ -7,6 +7,15 @@
 
 #ifndef SRHfunciones_h
 #define SRHfunciones_h
+int buscarpar(int *lineas, int etapa, int a, int b){
+    int i;
+    b=(1<<b);
+    b|=(1<<a);
+    for (i=0; i<etapa; i++)
+        if ((lineas[i]&b)==b)
+            return ENCONTRADO;
+    return NO_ENCONTRADO;
+}
 void graficar(graph *g, int tgrafica, int *lineas, int terminado, int nvertices, int tlinea){
     int i, j, k;
     EMPTYGRAPH(g,1,tgrafica);

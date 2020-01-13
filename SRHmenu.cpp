@@ -100,15 +100,6 @@ void imprimirlineas(int nvertices, int tlinea, int *lineas, int tam){
     }
     printf("\n");
 }
-int buscarpar(int *lineas, int etapa, int a, int b){
-    int i;
-    b=(1<<b);
-    b|=(1<<a);
-    for (i=0; i<etapa; i++)
-        if ((lineas[i]&b)==b)
-            return ENCONTRADO;
-    return NO_ENCONTRADO;
-}
 void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
     if (P!=NULL) {
         alinear(P->mayores, soluciones, contar);
