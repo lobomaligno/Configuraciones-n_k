@@ -13,34 +13,7 @@
 #include <string>
 #include <cmath>
 #include "SRHfunciones.h"
-using namespace std;
-struct nodo{
-    unsigned long hash;
-    int *grafica;
-    struct nodo *menores;
-    struct nodo *mayores;
-};
 #include "naututil.h"
-int compararhash(unsigned long hash1, unsigned long hash2){
-    if (hash1 < hash2)
-        return MENOR;
-    if (hash1 > hash2)
-        return MAYOR;
-    return IGUAL;
-}
-int buscarhash(struct nodo *pi,unsigned long hash, struct nodo **padre, int *comparacion){
-    while (pi!=NULL) {
-        *padre=pi;
-        *comparacion=compararhash(hash, pi->hash);
-        if (*comparacion==IGUAL)
-            return ENCONTRADO;
-        if (*comparacion==MAYOR)
-            pi=pi->mayores;
-        else if (*comparacion==MENOR)
-            pi=pi->menores;
-    }
-    return NO_ENCONTRADO;
-}
 void Borrar(struct nodo *pi){
     if(pi!=NULL){
         Borrar(pi->mayores);
@@ -48,22 +21,6 @@ void Borrar(struct nodo *pi){
         free(pi->grafica);
         free(pi);
     }
-}
-void imprimirlineas(int nvertices, int tlinea, int *lineas, int tam){
-    int i, j, nencontrados;
-    for (i=0; i<tam; ++i) {
-        printf("(");
-        for (j=0, nencontrados=0; j<nvertices && nencontrados<tlinea; ++j){
-            if (lineas[i]&(1<<j)){
-                ++nencontrados;
-                printf("%i", j+1);
-                if (nencontrados<tlinea)
-                printf(" ");
-            }
-        }
-        printf(")");
-    }
-    printf("\n");
 }
 void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
     if (P!=NULL) {
