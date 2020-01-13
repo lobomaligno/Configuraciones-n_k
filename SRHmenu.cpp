@@ -109,14 +109,6 @@ int buscarpar(int *lineas, int etapa, int a, int b){
             return ENCONTRADO;
     return NO_ENCONTRADO;
 }
-int validar(int *lineas, int *linea, int k, int vertice, int paso, int tlinea){
-    if(buscarvertice(lineas, paso, vertice, tlinea)==ENCONTRADO)
-        return INVALIDO;
-    for (int i=0; i<k; ++i)
-        if (buscarpar(lineas, paso, linea[i], vertice)==ENCONTRADO)
-            return INVALIDO;
-    return VALIDO;
-}
 void graficar(graph *g, int tgrafica, int *lineas, int terminado, int nvertices, int tlinea){
     int i, j, k;
     EMPTYGRAPH(g,1,tgrafica);
