@@ -7,7 +7,20 @@
 
 #ifndef SRHfunciones_h
 #define SRHfunciones_h
-
+void graficar(graph *g, int tgrafica, int *lineas, int terminado, int nvertices, int tlinea){
+    int i, j, k;
+    EMPTYGRAPH(g,1,tgrafica);
+    for (i=0; i<terminado; i++){
+        for (j=0; j<nvertices; ++j){
+            if (lineas[i]&(1<<j)){
+                ADDONEEDGE(g, j, nvertices+i, 1);
+                for (k=j+1; k<nvertices; ++k)
+                    if (lineas[i]&(1<<k))
+                        ADDONEEDGE(g, j, k, 1);
+            }
+        }
+    }
+}
 int buscarvertice(int *lineas, int etapa, int vertice, int tlinea){
     int i, contador;
     for (i=0, contador=0; i<etapa; i++)
@@ -36,8 +49,9 @@ void llenarlineas(int *lineas, int *lab, int *ptn, int *orbits, int nvertices, i
     options.defaultptn=TRUE;
     statsblk stats;
     for (i=0; i<nvertices && (!(lineas[etapa-1]&(1<<i))); ++i);
-    while (buscarvertice(lineas, etapa, i, tlinea)==ENCONTRADO)
+    while (buscarvertice(lineas, etapa, i, tlinea)==ENCONTRADO){
         ++i;
+    }
     linea[0]=i;
     S[1]=linea[0]+1;
     while (k>0) {

@@ -109,18 +109,6 @@ int buscarpar(int *lineas, int etapa, int a, int b){
             return ENCONTRADO;
     return NO_ENCONTRADO;
 }
-void graficar(graph *g, int tgrafica, int *lineas, int terminado, int nvertices, int tlinea){
-    int i, j, k;
-    EMPTYGRAPH(g,1,tgrafica);
-    for (i=0; i<terminado; i++)
-        for (j=0; j<nvertices; ++j)
-            if (lineas[i]&(1<<j)){
-                ADDONEEDGE(g, j, nvertices+i, 1);
-                for (k=j+1; k<nvertices; ++k)
-                    if (lineas[i]&(1<<k))
-                        ADDONEEDGE(g, j, k, 1);
-            }
-}
 void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
     if (P!=NULL) {
         alinear(P->mayores, soluciones, contar);
