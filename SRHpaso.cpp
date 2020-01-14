@@ -54,7 +54,8 @@ void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
 int main(int argc, const char * argv[]) {
     FILE *finput;
     char name[50];
-    int nvertices, tlinea, tam, i, k, a, contar1, contar2, avance;
+    int nvertices, tlinea, tam, i, a, avance;
+    unsigned long k, contar1, contar2;
     sprintf(name, "solucion%s.txt", argv[1]);
     finput = fopen(name,"r");
     if(finput==NULL){
@@ -65,7 +66,7 @@ int main(int argc, const char * argv[]) {
     fscanf(finput,"%d",&nvertices);
     fscanf(finput,"%d",&tlinea);
     fscanf(finput,"%d",&tam);
-    fscanf(finput,"%d",&contar1);
+    fscanf(finput,"%lu",&contar1);
     //printf("nvertices=%d, tlinea=%d, tam=%d y contar=%d\n", nvertices, tlinea, tam, contar1);
     int lineas[nvertices], lab[2*nvertices], ptn[2*nvertices], orbits[2*nvertices];
     for (i=0; i<2*nvertices; ++i)
@@ -129,6 +130,6 @@ int main(int argc, const char * argv[]) {
     Borrar(arbol);
     sprintf(name, "rm solucion%s.txt", argv[1]);
     system(name);
-    //printf("Paso en %s dio %d soluciones\n", argv[1], contar2);
+    //printf("Paso en %s dio %lu soluciones\n", argv[1], contar2);
     return 0;
 }

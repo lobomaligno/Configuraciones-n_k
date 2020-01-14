@@ -22,7 +22,7 @@ void Borrar(struct nodo *pi){
         free(pi);
     }
 }
-void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
+void alinear(struct nodo *P, struct nodo **soluciones, unsigned long *contar){
     if (P!=NULL) {
         alinear(P->mayores, soluciones, contar);
         alinear(P->menores, soluciones, contar);
@@ -32,7 +32,8 @@ void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
 }
 void SRP(int nvertices, int tlinea){
     int lineas[nvertices], lab[2*nvertices], ptn[2*nvertices], orbits[2*nvertices];
-    int i, k, a, contar1=0, contar2, etapa;
+    int a, etapa;
+    unsigned long contar1=0, contar2, k, i;
     char ejecutar[25];
     double temp;
     struct nodo *arbol1=NULL, *arbol2=NULL, *cambio;
@@ -138,12 +139,14 @@ int main(int argc, const char * argv[]) {
         do{
             printf("¿Cuantos vertices?\n");
             scanf("%d", &nvertices);
+	    while(getchar() != '\n');
             if (nvertices>20 || nvertices<7)
                 printf("Solo valores entre 7 y 20");
         }while(nvertices>20 || nvertices<7);
         do{
             printf("¿Cuantos vertices por linea?\n");
             scanf("%d", &tlinea);
+	    while(getchar() != '\n');
             if(tlinea!=3 && tlinea!=4)
                 printf("Solo 3 o 4");
         }while (tlinea!=3 && tlinea!=4);

@@ -41,7 +41,8 @@ int main(int argc, const char * argv[]) {
     FILE *finput1;
     FILE *finput2;
     char name[50];
-    int nvertices, tlinea, tam, ns1, ns2, archivos;
+    int nvertices, tlinea, tam, archivos;
+    unsigned long ns1, ns2, i, contador=0;
     sprintf(name, "soluciones0.txt");
     finput1 = fopen(name,"r");
     if(finput1==NULL){
@@ -52,8 +53,8 @@ int main(int argc, const char * argv[]) {
     fscanf(finput1,"%d",&nvertices);
     fscanf(finput1,"%d",&tlinea);
     fscanf(finput1,"%d",&tam);
-    fscanf(finput1,"%d",&ns1);
-    int i, j, contador=0;
+    fscanf(finput1,"%lu",&ns1);
+    int j;
     int lineas[tam];
     unsigned long hash;
     struct nodo*arbol=NULL;
@@ -74,25 +75,25 @@ int main(int argc, const char * argv[]) {
             system("pause");
             exit(23);
         }
-        fscanf(finput2,"%d",&ns2);
-        if (ns2!=nvertices){
+        fscanf(finput2,"%d",&j);
+        if (j!=nvertices){
             printf("Error, el numero de vertices es incoerente.\n");
             system("pause");
             exit(23);
         }
-        fscanf(finput2,"%d",&ns2);
-        if (ns2!=tlinea){
+        fscanf(finput2,"%d",&j);
+        if (j!=tlinea){
             printf("Error, el numero de vertices por linea es incoerente.\n");
             system("pause");
             exit(23);
         }
-        fscanf(finput2,"%d",&ns2);
-        if (ns2!=tam){
+        fscanf(finput2,"%d",&j);
+        if (j!=tam){
             printf("Error, el tamaño de las soluciones parciales es incoerente.\n");
             system("pause");
             exit(23);
         }
-        fscanf(finput2,"%d",&ns2);
+        fscanf(finput2,"%lu",&ns2);
         for (i=0; i<ns2; ++i){
             for (j=0; j<tam; ++j)
                 fscanf(finput2,"%d",&lineas[j]);
@@ -100,15 +101,12 @@ int main(int argc, const char * argv[]) {
             if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
                 ++contador;
         }
-        //printf("Contador=%d\n", contador);
-        //printf("lotes fusionados\n");
     }
-    //printf("Fusion: tam=%i", tam);
     if(tam<nvertices-tlinea){
-        printf("%d soluciones parciales en la etapa %d\n", contador, tam);
+        printf("%lu soluciones parciales en la etapa %d\n", contador, tam);
     }
     else{
-        printf("Existen %d configuraciones %d_%d\n", contador, nvertices, tlinea);
+        printf("Existen %lu configuraciones %d_%d\n", contador, nvertices, tlinea);
     }
     for (archivos=0; archivos<72; ++archivos) {
         sprintf(name, "rm soluciones%d.txt", archivos);

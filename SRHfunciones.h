@@ -126,7 +126,7 @@ int validar(int *lineas, int *linea, int k, int vertice, int paso, int tlinea){
             return INVALIDO;
     return VALIDO;
 }
-void llenarlineas(int *lineas, int *lab, int *ptn, int *orbits, int nvertices, int tlinea, int etapa, struct nodo **arbol, int *contar, int salto){
+void llenarlineas(int *lineas, int *lab, int *ptn, int *orbits, int nvertices, int tlinea, int etapa, struct nodo **arbol, unsigned long *contar, int salto){
     unsigned long hash;
     int k=1, i, e;
     int linea[tlinea], S[tlinea];

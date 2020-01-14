@@ -30,7 +30,7 @@ void escribir(struct nodo *pi, int tam, ofstream *myfile){
         escribir(pi->menores, tam, myfile);
     }
 }
-void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
+void alinear(struct nodo *P, struct nodo **soluciones, unsigned long *contar){
     if (P!=NULL) {
         alinear(P->mayores, soluciones, contar);
         alinear(P->menores, soluciones, contar);
@@ -42,8 +42,9 @@ int main(int argc, const char * argv[]) {
     FILE *finput1;
     ofstream myfile;
     char name[50];
-    int nvertices, tlinea, tam, ns, i, j, k, dato;
-    float temp;
+    int nvertices, tlinea, tam, j, dato;
+    unsigned long ns, i, k;
+    double temp;
     long hash;
     //printf("se imprime %i %s %s %s \n", argc,argv[0], argv[1], argv[2]);
     sprintf(name, "soluciones%s.txt", argv[1]);
@@ -61,7 +62,7 @@ int main(int argc, const char * argv[]) {
     //printf("tlinea=%d\n", tlinea);
     fscanf(finput1,"%d",&tam);
     //printf("tam=%d\n", tam);
-    fscanf(finput1,"%d",&ns);
+    fscanf(finput1,"%lu",&ns);
     //printf("ns=%d\n", ns);
     temp=ns;
     k=floor(temp/72);
