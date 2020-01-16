@@ -128,8 +128,6 @@ int main(int argc, const char * argv[]) {
     escribir(arbol, tam+avance, &myfile);
     myfile.close();
     Borrar(arbol);
-    sprintf(name, "rm solucion%s.txt", argv[1]);
-    system(name);
     //printf("Paso en %s dio %lu soluciones\n", argv[1], contar2);
     return 0;
 }

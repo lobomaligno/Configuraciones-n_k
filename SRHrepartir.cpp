@@ -86,7 +86,12 @@ int main(int argc, const char * argv[]) {
     }
     myfile.close();
     if(tam<nvertices){
+        sprintf(name, "df -h");
+        system(name);
+	printf("Borrar soluciones%s.txt\n", argv[1]);
         sprintf(name, "rm soluciones%s.txt", argv[1]);
+        system(name);
+	sprintf(name, "df -h");
         system(name);
         sprintf(name, "./ciclosolucion1.sh %i %i %i", nvertices, tam, tlinea);
         system(name);

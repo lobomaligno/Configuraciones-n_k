@@ -12,6 +12,15 @@ wait
 let end=`date +%s`
 let runtime=$end-$start
 echo "Tardo: $runtime"
+df -h
+echo "Borrar solucion%s.txt"
+i=0
+while [ 71 -ge $i ]
+do
+    rm solucion$i.txt
+    let i=$i+1
+done
+df -h
 echo "fusion"
 let start=`date +%s`
 ./fusion
