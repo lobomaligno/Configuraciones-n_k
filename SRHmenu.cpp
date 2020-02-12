@@ -155,7 +155,7 @@ int main(int argc, const char * argv[]) {
         getrusage(RUSAGE_SELF, &ru_end);
         timeval_subtract(&tv_elapsed, &ru_end.ru_utime, &ru_begin.ru_utime);
         printf("Proceso terminado tardo %g ms.\n", (tv_elapsed.tv_sec + (tv_elapsed.tv_usec/1000000.0))*1000.0);
-        printf("¿Desea continuar?\n");
+        printf("¿Desea continuar\n");
         scanf("%s", &continuar);
     }
     return 0;

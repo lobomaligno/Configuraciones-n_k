@@ -108,11 +108,11 @@ int main(int argc, const char * argv[]) {
     }
     */
     //Vercion 2
-    if (tam<nvertices-2*tlinea) {
+    if (tam<nvertices-2*tlinea-1) {
         avance=1;
     }
     else{
-        avance=tlinea;
+        avance=tlinea+1;
     }
     for (k=0; k<contar1; ++k){
         for (a=0; a<tam; ++a){
