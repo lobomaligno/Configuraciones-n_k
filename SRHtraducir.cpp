@@ -12,12 +12,12 @@ int main(int argc, const char * argv[]) {
     finput = fopen(argv[1], "r");
     int nvertices, tlinea, tam, n;
     if(argv[2]==NULL){
-	printf("Traducir: Se necesita un segundo argumento para el nombre del archivo de salida\n");
+        printf("Traducir: Se necesita un segundo argumento para el nombre del archivo de salida\n");
         system("pause");
         exit(23);
     }
     else{
-	printf("Traducir: El archivo de salida es %s\n", argv[2]);
+        printf("Traducir: El archivo de salida es %s\n", argv[2]);
     }
     if(finput==NULL){
         printf("Traducir: No esta el archivo %s\n", argv[1]);
