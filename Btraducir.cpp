@@ -37,6 +37,7 @@ int main(int argc, const char * argv[]) {
     finput.read((char*)&tlinea, sizeof(int));
     finput.read((char*)&tam, sizeof(int));
     finput.read((char*)&n, sizeof(int));
+    printf("nvertices=%d\ntlinea=%d\ntam=%d\nn=%d\n", nvertices, tlinea, tam, n);
     ofstream myfile;
     myfile.open (argv[2]);
     int i, j, k, l, m;
