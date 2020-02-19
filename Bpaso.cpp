@@ -59,7 +59,6 @@ void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
     }
 }
 int main(int argc, const char * argv[]) {
-    FILE *finput;
     char name[50];
     int nvertices, tlinea, tam, i, a, avance;
     unsigned long k, contar1, contar2;
