@@ -35,11 +35,11 @@ void escribir(struct nodo *pi, int tam, ofstream *myfile){
         for (int i=0; i<tam; ++i){
             //*myfile<<pi->grafica[i]<<" ";
             temp=pi->grafica[i];
-            myfile.write( (char*)&temp, sizeof(int));
+            *myfile.write( (char*)&temp, sizeof(int));
         }
         //*myfile<<pi->hash<<"\n";
         temp2=pi->hash;
-        myfile.write( (char*)temp2, sizeof(long));
+        *myfile.write( (char*)temp2, sizeof(long));
         escribir(pi->mayores, tam, myfile);
     }
 }
