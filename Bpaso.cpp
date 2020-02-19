@@ -65,7 +65,7 @@ int main(int argc, const char * argv[]) {
     unsigned long k, contar1, contar2;
     sprintf(name, "solucion%s.bin", argv[1]);
     //finput = fopen(name,"r");
-    ifstream finput (argv[1], ios::in|ios::binary);
+    ifstream finput (name, ios::in|ios::binary);
     /*
     if(finput==NULL){
         printf("Paso: No esta el archivo %s\n", name);
