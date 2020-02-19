@@ -86,7 +86,7 @@ int main(int argc, const char * argv[]) {
     finput.read((char*)&nvertices, sizeof(int));
     finput.read((char*)&tlinea, sizeof(int));
     finput.read((char*)&tam, sizeof(int));
-    finput.read((char*)&n, sizeof(int));
+    finput.read((char*)&contar1, sizeof(long));
     //printf("nvertices=%d, tlinea=%d, tam=%d y contar=%d\n", nvertices, tlinea, tam, contar1);
     int lineas[nvertices], lab[2*nvertices], ptn[2*nvertices], orbits[2*nvertices];
     for (i=0; i<2*nvertices; ++i)
