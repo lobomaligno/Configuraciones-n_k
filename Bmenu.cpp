@@ -33,7 +33,7 @@ void alinear(struct nodo *P, struct nodo **soluciones, unsigned long *contar){
 void SRP(int nvertices, int tlinea){
     int lineas[nvertices], lab[2*nvertices], ptn[2*nvertices], orbits[2*nvertices];
     int a, etapa, temp2;
-    unsigned long contar1=0, contar2, k, i;
+    unsigned long contar1=0, contar2, k, i, temp3;
     char ejecutar[25];
     double temp;
     struct nodo *arbol1=NULL, *arbol2=NULL, *cambio;
@@ -117,12 +117,12 @@ void SRP(int nvertices, int tlinea){
                 myfile.write( (char*)&temp2, sizeof(int));
                 if (i/k<71){
                     //myfile<<k<<"\n";
-                    myfile.write( (char*)&k, sizeof(int));
+                    myfile.write( (char*)&k, sizeof(long));
                 }
                 else{
                     //myfile<<contar1-i<<"\n";
-                    temp2=contar1-i;
-                    myfile.write( (char*)&temp2, sizeof(int));
+                    temp3=contar1-i;
+                    myfile.write( (char*)&temp3, sizeof(long));
                 }
             }
             for (a=0; a<8-tlinea; ++a){
