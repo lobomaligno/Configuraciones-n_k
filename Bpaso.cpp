@@ -39,7 +39,7 @@ void escribir(struct nodo *pi, int tam, ofstream *myfile){
         }
         //*myfile<<pi->hash<<"\n";
         temp2=pi->hash;
-        myfile->write( (char*)temp2, sizeof(long));
+        myfile->write( (char*)&temp2, sizeof(long));
         escribir(pi->mayores, tam, myfile);
     }
 }
@@ -63,26 +63,15 @@ int main(int argc, const char * argv[]) {
     int nvertices, tlinea, tam, i, a, avance;
     unsigned long k, contar1, contar2;
     sprintf(name, "solucion%s.bin", argv[1]);
-    //finput = fopen(name,"r");
+    //printf("name=%s\n",name);
     ifstream finput (name, ios::in|ios::binary);
-    /*
-    if(finput==NULL){
-        printf("Paso: No esta el archivo %s\n", name);
-        system("pause");
-        exit(23);
-    }
-     */
+    //printf("archivo abierto\n",name);
     if(!finput.is_open()){
         printf("Traducir: No esta el archivo %s\n", argv[1]);
         system("pause");
         exit(23);
     }
-    /*
-    fscanf(finput,"%d",&nvertices);
-    fscanf(finput,"%d",&tlinea);
-    fscanf(finput,"%d",&tam);
-    fscanf(finput,"%lu",&contar1);
-     */
+    //printf("archivo abierto confirmado\n");
     finput.read((char*)&nvertices, sizeof(int));
     finput.read((char*)&tlinea, sizeof(int));
     finput.read((char*)&tam, sizeof(int));
@@ -105,6 +94,7 @@ int main(int argc, const char * argv[]) {
     else{
         avance=tlinea+1;
     }
+    //printf("avance=%d\n", avance);
     for (k=0; k<contar1; ++k){
         for (a=0; a<tam; ++a){
             //fscanf(finput,"%d",&lineas[a+tlinea]);
@@ -116,13 +106,15 @@ int main(int argc, const char * argv[]) {
     sprintf(name, "soluciones%s.bin", argv[1]);
     ofstream myfile;
     myfile.open (name, ios::out | ios::binary);
-    //myfile<<nvertices<<" "<<tlinea<<" "<<tam+avance<<" "<<contar2<<"\n";
-    myfile.write( (char*)&nvertices, sizeof(int));
-    myfile.write( (char*)&tlinea, sizeof(int));
+    //printf("segundo archivo abierto\n");
+    myfile.write((char*)&nvertices, sizeof(int));
+    myfile.write((char*)&tlinea, sizeof(int));
     tam+=avance;
-    myfile.write( (char*)&tam, sizeof(int));
-    myfile.write( (char*)&contar2, sizeof(long));
+    //printf("tam=%d\n", tam);
+    myfile.write((char*)&tam, sizeof(int));
+    myfile.write((char*)&contar2, sizeof(long));
     escribir(arbol, tam+avance, &myfile);
+    //printf("Archivo escrito\n");
     myfile.close();
     Borrar(arbol);
     //printf("Paso en %s dio %lu soluciones\n", argv[1], contar2);

@@ -124,8 +124,8 @@ void SRP(int nvertices, int tlinea){
         myfile.close();
         free(soluciones);
         Borrar(arbol1);
-        //sprintf(ejecutar, "./ciclosolucion1.sh %i %i %i", nvertices, 8-tlinea, tlinea);
-        //system(ejecutar);
+        sprintf(ejecutar, "./ciclosolucion1.sh %i %i %i", nvertices, 8-tlinea, tlinea);
+        system(ejecutar);
     }
 }
 int main(int argc, const char * argv[]) {
