@@ -20,3 +20,9 @@ do
     let i=$i+1
 done
 df -h
+echo "fusion"
+let start=`date +%s`
+./Bfusion
+let end=`date +%s`
+let runtime=$end-$start
+echo "Tardo: $runtime"
