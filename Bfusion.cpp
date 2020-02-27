@@ -67,7 +67,8 @@ int main(int argc, const char * argv[]) {
     finput1.read((char*)&nvertices, sizeof(int));
     finput1.read((char*)&tlinea, sizeof(int));
     finput1.read((char*)&tam, sizeof(int));
-    finput1.read((char*)&contar1, sizeof(long));
+    finput1.read((char*)&ns1, sizeof(long));
+    //printf("nvertices=%d, tlinea=%d, tam=%d, contador=%lu\n", nvertices, tlinea, tam, ns1);
     int j;
     int lineas[tam];
     unsigned long hash;
@@ -82,14 +83,14 @@ int main(int argc, const char * argv[]) {
         if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
             ++contador;
     }
-    ifstream finput2;
     for (archivos=1; archivos<72; ++archivos) {
-        sprintf(name, "soluciones%d.bin ", archivos);
+        sprintf(name, "soluciones%d.bin", archivos);
         //printf("Fusion: Integrando el archivo %s\n", name);
         //finput2 = fopen(name,"r");
-        std::ifstream input2(name);
+        ifstream finput2 (name, ios::in|ios::binary);
         if(!finput2.is_open()){
-            printf("No esta el archivo\n");
+            printf("No esta el archivo %s.\n", name);
+	    system("ls soluciones1.bin");
             system("pause");
             exit(23);
         }
@@ -134,7 +135,7 @@ int main(int argc, const char * argv[]) {
         printf("Existen %lu configuraciones %d_%d\n", contador, nvertices, tlinea);
     }
     for (archivos=0; archivos<72; ++archivos) {
-        sprintf(name, "rm soluciones%d.txt", archivos);
+        sprintf(name, "rm soluciones%d.bin", archivos);
         system(name);
     }
     ofstream myfile;

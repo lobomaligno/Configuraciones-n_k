@@ -76,7 +76,7 @@ int main(int argc, const char * argv[]) {
     finput.read((char*)&tlinea, sizeof(int));
     finput.read((char*)&tam, sizeof(int));
     finput.read((char*)&contar1, sizeof(long));
-    //printf("nvertices=%d, tlinea=%d, tam=%d y contar=%d\n", nvertices, tlinea, tam, contar1);
+    //printf("paso: nvertices=%d, tlinea=%d, tam=%d y contar=%d\n", nvertices, tlinea, tam, contar1);
     int lineas[nvertices], lab[2*nvertices], ptn[2*nvertices], orbits[2*nvertices];
     for (i=0; i<2*nvertices; ++i)
         lab[i]=i;
@@ -113,7 +113,8 @@ int main(int argc, const char * argv[]) {
     //printf("tam=%d\n", tam);
     myfile.write((char*)&tam, sizeof(int));
     myfile.write((char*)&contar2, sizeof(long));
-    escribir(arbol, tam+avance, &myfile);
+    //printf("%s contar2=%lu\n", argv[1], contar2);
+    escribir(arbol, tam, &myfile);
     //printf("Archivo escrito\n");
     myfile.close();
     Borrar(arbol);

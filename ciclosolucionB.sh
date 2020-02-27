@@ -26,3 +26,8 @@ let start=`date +%s`
 let end=`date +%s`
 let runtime=$end-$start
 echo "Tardo: $runtime"
+if [ $2 -lt $(($1-2*$3-1)) ]; then
+    ./Brepartir 0
+fi
+exit
+

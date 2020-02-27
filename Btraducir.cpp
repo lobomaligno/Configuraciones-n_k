@@ -13,7 +13,8 @@ int main(int argc, const char * argv[]) {
     finput = fopen(argv[1], "r");
      */
     ifstream finput (argv[1], ios::in|ios::binary);
-    int nvertices, tlinea, tam, n;
+    int nvertices, tlinea, tam;
+    unsigned long n;
     if(argv[2]==NULL){
         printf("Traducir: Se necesita un segundo argumento para el nombre del archivo de salida\n");
         system("pause");
@@ -36,13 +37,15 @@ int main(int argc, const char * argv[]) {
     finput.read((char*)&nvertices, sizeof(int));
     finput.read((char*)&tlinea, sizeof(int));
     finput.read((char*)&tam, sizeof(int));
-    finput.read((char*)&n, sizeof(int));
-    printf("nvertices=%d\ntlinea=%d\ntam=%d\nn=%d\n", nvertices, tlinea, tam, n);
+    finput.read((char*)&n, sizeof(long));
+    printf("nvertices=%d\ntlinea=%d\ntam=%d\nn=%lu\n", nvertices, tlinea, tam, n);
     ofstream myfile;
     myfile.open (argv[2]);
+    printf("Archivo creado\n");
     int i, j, k, l, m;
-    //unsigned long hash;
+    unsigned long hash;
     for(i=0; i<n; i++){
+	//printf("i=%d\n", i);
         for (j=0, k=1; j<tlinea; ++j) {
             myfile<<"(1";
             for (l=1; l<tlinea; ++l){
@@ -50,11 +53,13 @@ int main(int argc, const char * argv[]) {
             }
             myfile<<")";
         }
+	//printf("Primeros puntos escritos\n");
         for(j=0; j<tam; j++){
+	    //printf("j=%d\n", j);
             myfile<<"(";
-            //fscanf(finput, "%d", &k);
             finput.read((char*)&k, sizeof(int));
-            for (l=1, m=0; m<tlinea || l<nvertices; l++) {
+	    //printf("k=%d\n", k);
+            for (l=1, m=0; l<nvertices; l++) {
                 if(k&(1<<l)){
                     myfile<<(l+1);
                     m++;
@@ -65,7 +70,9 @@ int main(int argc, const char * argv[]) {
             }
             myfile<<")";
         }
-        //fscanf(finput,"%lu",&hash);
+	//printf("configuracion guardada\n");
+	finput.read((char*)&hash, sizeof(long));
+	myfile<<"hash="<<hash;
         myfile<<"\n";
     }
 }
