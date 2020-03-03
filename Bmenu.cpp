@@ -12,8 +12,10 @@
 #include <fstream>
 #include <string>
 #include <cmath>
+#include <ctime>
 #include "SRHfunciones.h"
 #include "naututil.h"
+using namespace std;
 void Borrar(struct nodo *pi){
     if(pi!=NULL){
         Borrar(pi->mayores);
@@ -146,6 +148,8 @@ int main(int argc, const char * argv[]) {
     struct rusage ru_begin;
     struct rusage ru_end;
     struct timeval tv_elapsed;
+    time_t now;
+    char* dt;
     while(continuar=='s'){
         do{
             printf("¿Cuantos vertices?\n");
@@ -166,6 +170,12 @@ int main(int argc, const char * argv[]) {
         getrusage(RUSAGE_SELF, &ru_end);
         timeval_subtract(&tv_elapsed, &ru_end.ru_utime, &ru_begin.ru_utime);
         printf("Proceso terminado tardo %g ms.\n", (tv_elapsed.tv_sec + (tv_elapsed.tv_usec/1000000.0))*1000.0);
+	now = time(0);
+	dt = ctime(&now);
+	cout << "The local date and time is: " << dt << endl;
+	tm *gmtm = gmtime(&now);
+	dt = asctime(gmtm);
+	cout << "The UTC date and time is:"<< dt << endl;
         printf("¿Desea cotuinuar?\n");
         scanf("%s", &continuar);
     }
