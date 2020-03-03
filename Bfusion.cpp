@@ -139,7 +139,7 @@ int main(int argc, const char * argv[]) {
         system(name);
     }
     ofstream myfile;
-    sprintf(name, "soluciones0.txt");
+    sprintf(name, "soluciones0.bin");
     //myfile.open (name);
     myfile.open (name, ios::out | ios::binary);
     //myfile<<nvertices<<" "<<tlinea<<" "<<tam<<" "<<contador<<"\n";

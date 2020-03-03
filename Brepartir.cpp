@@ -43,12 +43,12 @@ int main(int argc, const char * argv[]) {
     ofstream myfile;
     char name[50];
     int nvertices, tlinea, tam, j, dato;
-    unsigned long ns, i, k, temp;
+    unsigned long ns, i, k, templong;
     double temp;
     long hash;
     //printf("se imprime %i %s %s %s \n", argc,argv[0], argv[1], argv[2]);
     sprintf(name, "soluciones%s.bin", argv[1]);
-    //printf("%s\n", name);
+    printf("name=%s.\n", name);
     //finput1 = fopen(name,"r");
     ifstream finput1 (name, ios::in|ios::binary);
     if(!finput1.is_open()){
@@ -77,7 +77,7 @@ int main(int argc, const char * argv[]) {
     for (i=0; i<ns; ++i) {
         if (i%k==0  && i/k<72){
             myfile.close();
-            myfile.open ("solucion"+std::to_string(i/k)+".bin");
+            myfile.open ("solucion"+std::to_string(i/k)+".bin", ios::out|ios::binary);
             //myfile<<nvertices<<" "<<tlinea<<" "<<tam<<" ";
             myfile.write((char*)&nvertices, sizeof(int));
             myfile.write((char*)&tlinea, sizeof(int));
@@ -87,8 +87,8 @@ int main(int argc, const char * argv[]) {
                 myfile.write((char*)&k, sizeof(long));
             }
             else{
-                temp=ns-i;
-                myfile.write((char*)&temp, sizeof(long));
+                templong=ns-i;
+                myfile.write((char*)&templong, sizeof(long));
                 //myfile<<ns-i<<"\n";
             }
         }
@@ -110,12 +110,12 @@ int main(int argc, const char * argv[]) {
     if(tam<nvertices){
         sprintf(name, "df -h");
         system(name);
-        printf("Borrar soluciones%s.txt\n", argv[1]);
-        sprintf(name, "rm soluciones%s.txt", argv[1]);
+        printf("Borrar soluciones%s.bin\n", argv[1]);
+        sprintf(name, "rm soluciones%s.bin", argv[1]);
         system(name);
         sprintf(name, "df -h");
         system(name);
-        sprintf(name, "./ciclosolucion1.sh %i %i %i", nvertices, tam, tlinea);
+        sprintf(name, "./ciclosolucionB.sh %i %i %i", nvertices, tam, tlinea);
         system(name);
     }
 }

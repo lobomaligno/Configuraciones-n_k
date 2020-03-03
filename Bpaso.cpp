@@ -67,7 +67,7 @@ int main(int argc, const char * argv[]) {
     ifstream finput (name, ios::in|ios::binary);
     //printf("archivo abierto\n",name);
     if(!finput.is_open()){
-        printf("Traducir: No esta el archivo %s\n", argv[1]);
+        printf("Traducir: No esta el archivo %s.\n", name);
         system("pause");
         exit(23);
     }

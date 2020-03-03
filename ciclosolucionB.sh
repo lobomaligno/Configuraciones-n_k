@@ -12,7 +12,7 @@ let end=`date +%s`
 let runtime=$end-$start
 echo "Tardo: $runtime"
 df -h
-echo "Borrar solucion%s.txt"
+echo "Borrar solucion%s.bin"
 i=0
 while [ 71 -ge $i ]
 do
