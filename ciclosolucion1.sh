@@ -20,13 +20,13 @@ do
     let i=$i+1
 done
 df -h
-#echo "fusion"
-#let start=`date +%s`
-#./fusion
-#let end=`date +%s`
-#let runtime=$end-$start
-#echo "Tardo: $runtime"
-#if [ $2 -lt $(($1-2*$3-1)) ]; then
-#    ./repartir 0
-#fi
-#exit
+echo "fusion"
+let start=`date +%s`
+./fusion
+let end=`date +%s`
+let runtime=$end-$start
+echo "Tardo: $runtime"
+if [ $2 -lt $(($1-2*$3-1)) ]; then
+    ./repartir 0
+fi
+exit
