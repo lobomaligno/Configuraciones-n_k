@@ -6,12 +6,12 @@
 #define IGUAL 0
 #define MAYOR 1
 #include "nauty.h"
-#include "profile_time.h"
 #include <functional>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <cmath>
+#include <ctime>
 #include "SRHfunciones.h"
 #include "naututil.h"
 void Borrar(struct nodo *pi){
@@ -132,9 +132,8 @@ int main(int argc, const char * argv[]) {
     int nvertices, tlinea;
     char continuar='s';
     nauty_check(WORDSIZE,1,MAXN,NAUTYVERSIONID);
-    struct rusage ru_begin;
-    struct rusage ru_end;
-    struct timeval tv_elapsed;
+    time_t now;
+    tm *ltm;
     while(continuar=='s'){
         do{
             printf("¿Cuantos vertices?\n");
@@ -150,11 +149,23 @@ int main(int argc, const char * argv[]) {
             if(tlinea!=3 && tlinea!=4)
                 printf("Solo 3 o 4");
         }while (tlinea!=3 && tlinea!=4);
-        getrusage(RUSAGE_SELF, &ru_begin);
+        now = time(0);
+        ltm = localtime(&now);
+        cout << "Year: " << ltm->tm_year+1900<< endl;
+        cout << "Month: "<< ltm->tm_mon+1<< endl;
+        cout << "Day: "<<  ltm->tm_mday << endl;
+        cout << "Time: "<< ltm->tm_hour-6 << ":";
+        cout << ltm->tm_min << ":";
+        cout << ltm->tm_sec << endl;
         SRP(nvertices, tlinea);
-        getrusage(RUSAGE_SELF, &ru_end);
-        timeval_subtract(&tv_elapsed, &ru_end.ru_utime, &ru_begin.ru_utime);
-        printf("Proceso terminado tardo %g ms.\n", (tv_elapsed.tv_sec + (tv_elapsed.tv_usec/1000000.0))*1000.0);
+        now = time(0);
+        ltm = localtime(&now);
+        cout << "Year: " << ltm->tm_year+1900<< endl;
+        cout << "Month: "<< ltm->tm_mon+1<< endl;
+        cout << "Day: "<<  ltm->tm_mday << endl;
+        cout << "Time: "<< ltm->tm_hour-6 << ":";
+        cout << ltm->tm_min << ":";
+        cout << ltm->tm_sec << endl;
         printf("¿Desea continuar\n");
         scanf("%s", &continuar);
     }

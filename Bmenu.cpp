@@ -145,40 +145,39 @@ int main(int argc, const char * argv[]) {
     char continuar='s';
     nauty_check(WORDSIZE,1,MAXN,NAUTYVERSIONID);
     time_t now;
-    char* dt;
     tm *ltm;
     while(continuar=='s'){
         do{
             printf("¿Cuantos vertices?\n");
             scanf("%d", &nvertices);
-	    while(getchar() != '\n');
+            while(getchar() != '\n');
             if (nvertices>20 || nvertices<7)
                 printf("Solo valores entre 7 y 20");
         }while(nvertices>20 || nvertices<7);
         do{
             printf("¿Cuantos vertices por linea?\n");
             scanf("%d", &tlinea);
-	    while(getchar() != '\n');
+            while(getchar() != '\n');
             if(tlinea!=3 && tlinea!=4)
                 printf("Solo 3 o 4");
         }while (tlinea!=3 && tlinea!=4);
         now = time(0);
         ltm = localtime(&now);
-	cout << "Year: " << ltm->tm_year+1900<< endl;
-	cout << "Month: "<< ltm->tm_mon+1<< endl;
-	cout << "Day: "<<  ltm->tm_mday << endl;
+        cout << "Year: " << ltm->tm_year+1900<< endl;
+        cout << "Month: "<< ltm->tm_mon+1<< endl;
+        cout << "Day: "<<  ltm->tm_mday << endl;
         cout << "Time: "<< ltm->tm_hour-6 << ":";
         cout << ltm->tm_min << ":";
         cout << ltm->tm_sec << endl;
         SRP(nvertices, tlinea);
-	now = time(0);
-	ltm = localtime(&now);
-	cout << "Year: " << ltm->tm_year+1900<< endl;
-	cout << "Month: "<< ltm->tm_mon+1<< endl;
-	cout << "Day: "<<  ltm->tm_mday << endl;
-	cout << "Time: "<< ltm->tm_hour-6 << ":";
-	cout << ltm->tm_min << ":";
-	cout << ltm->tm_sec << endl;
+        now = time(0);
+        ltm = localtime(&now);
+        cout << "Year: " << ltm->tm_year+1900<< endl;
+        cout << "Month: "<< ltm->tm_mon+1<< endl;
+        cout << "Day: "<<  ltm->tm_mday << endl;
+        cout << "Time: "<< ltm->tm_hour-6 << ":";
+        cout << ltm->tm_min << ":";
+        cout << ltm->tm_sec << endl;
         printf("¿Desea continuar?\n");
         scanf("%s", &continuar);
     }
