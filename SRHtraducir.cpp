@@ -55,6 +55,6 @@ int main(int argc, const char * argv[]) {
             myfile<<")";
         }
         fscanf(finput,"%lu",&hash);
-        myfile<<"\n";
+        myfile<<" "<<hash<<" "<<"\n";
     }
 }

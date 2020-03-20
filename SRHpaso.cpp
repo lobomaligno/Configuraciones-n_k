@@ -29,11 +29,11 @@ void registrarlinea(int *lineas, int tam, ofstream *myfile, unsigned long hash){
 }
 void escribir(struct nodo *pi, int tam, ofstream *myfile){
     if(pi!=NULL){
-        for (int i=0; i<tam; ++i)
+        escribir(pi->menores, tam, myfile);
+	for (int i=0; i<tam; ++i)
             *myfile<<pi->grafica[i]<<" ";
         *myfile<<pi->hash<<"\n";
         escribir(pi->mayores, tam, myfile);
-        escribir(pi->menores, tam, myfile);
     }
 }
 void escribir2(struct nodo *pi, ofstream *myfile){
