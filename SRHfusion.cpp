@@ -53,19 +53,23 @@ int main(int argc, const char * argv[]) {
     fscanf(finput1,"%d",&nvertices);
     fscanf(finput1,"%d",&tlinea);
     fscanf(finput1,"%d",&tam);
-    fscanf(finput1,"%lu",&ns1);
+    fscanf(finput1,"%lu",&ns2);
     int j;
+    //printf("nvertices=%d, tlinea=%d, tam=%d, n=%lu\n", nvertices, tlinea, tam, ns2);
     int lineas[tam];
     unsigned long hash;
     struct nodo*arbol=NULL;
-    for (i=0; i<ns1; ++i){
-        for (j=0; j<tam; ++j)
-            fscanf(finput1,"%d",&lineas[j]);
-        fscanf(finput1,"%lu",&hash);
-        if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
-            ++contador;
+    for (i=0; i<ns2; ++i){
+	for (j=0; j<tam; ++j){
+	    fscanf(finput1,"%d",&lineas[j]);
+	    //printf("%d ", lineas[j]);
+	}
+	//printf("\n");
+	fscanf(finput1,"%lu",&hash);
+	if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
+	    ++contador;
     }
-    //printf("Contador=%d\n", contador);
+    printf("Contador=%d\n", contador);
     for (archivos=1; archivos<72; ++archivos) {
         sprintf(name, "soluciones%d.txt", archivos);
         //printf("Fusion: Integrando el archivo %s\n", name);
@@ -94,13 +98,13 @@ int main(int argc, const char * argv[]) {
             exit(23);
         }
         fscanf(finput2,"%lu",&ns2);
-        for (i=0; i<ns2; ++i){
-            for (j=0; j<tam; ++j)
-                fscanf(finput2,"%d",&lineas[j]);
-            fscanf(finput2,"%lu",&hash);
-            if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
-                ++contador;
-        }
+	for (i=0; i<ns2; ++i){
+	    for (j=0; j<tam; ++j)
+		fscanf(finput2,"%d",&lineas[j]);
+	    fscanf(finput2,"%lu",&hash);
+	    if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
+		++contador;
+	}
     }
     if(tam<nvertices-tlinea){
         printf("%lu soluciones parciales en la etapa %d\n", contador, tam);
@@ -116,6 +120,7 @@ int main(int argc, const char * argv[]) {
     sprintf(name, "soluciones0.txt");
     myfile.open (name);
     myfile<<nvertices<<" "<<tlinea<<" "<<tam<<" "<<contador<<"\n";
+    printf("Escribiendo fucion");
     escribir(arbol, tam, &myfile);
     myfile.close();
     Borrar(arbol);
