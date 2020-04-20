@@ -79,48 +79,26 @@ int main(int argc, const char * argv[]) {
             lineas[i]|=(1<<++k);
     }
     contar2=0;
-    //Vercion 1
-    /*
-    if (tam<nvertices-6) {
-        for (k=0; k<contar1; ++k){
-            for (a=0; a<tam; ++a)
-                fscanf(finput,"%d",&lineas[a+tlinea]);
-            llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, tlinea+tam, &arbol, &contar2, 0);
-        }
-        sprintf(name, "soluciones%s.txt", argv[1]);
-        ofstream myfile;
-        myfile.open (name);
-        myfile<<nvertices<<" "<<tlinea<<" "<<tam+1<<" "<<contar2<<"\n";
-        escribir(arbol, tam+1, &myfile);
-        myfile.close();
-    }
-    else{
-        for (k=0; k<contar1; ++k){
-            for (a=0; a<tam; ++a)
-                fscanf(finput,"%d",&lineas[a+tlinea]);
-            llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, tlinea+tam, &arbol, &contar2, 2);
-        }
-        sprintf(name, "S%stotales.txt", argv[1]);
-        ofstream myfile;
-        myfile.open (name);
-        escribir2(arbol, &myfile);
-        myfile.close();
-    }
-    */
-    //Vercion 2
-    if (tam<nvertices-2*tlinea-1) {
+    if (tam<nvertices-2*tlinea) {
         avance=1;
     }
     else{
-        avance=tlinea+1;
+        avance=tlinea;
     }
-    for (k=0; k<contar1; ++k){
+    for(k=0; k<contar1; k++){
         for (a=0; a<tam; ++a){
             fscanf(finput,"%d",&lineas[a+tlinea]);
         }
 	//imprimirlineas(nvertices, tlinea, lineas, tlinea+tam);
         llenarlineas(lineas, lab, ptn, orbits, nvertices, tlinea, tlinea+tam, &arbol, &contar2, avance-1);
     }
+    /*
+    if (!feof(finput)){
+	printf("Paso: Algo paso mientras se leia el archivo %s\n", name);
+        system("pause");
+        exit(23);
+    }
+    */
     sprintf(name, "soluciones%s.txt", argv[1]);
     ofstream myfile;
     myfile.open (name);

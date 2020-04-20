@@ -151,7 +151,6 @@ int main(int argc, const char * argv[]) {
         }while (tlinea!=3 && tlinea!=4);
         now = time(0);
         ltm = localtime(&now);
-	printf("hola");
         cout << "Year: " << ltm->tm_year+1900<< endl;
         cout << "Month: "<< ltm->tm_mon+1<< endl;
         cout << "Day: "<<  ltm->tm_mday << endl;

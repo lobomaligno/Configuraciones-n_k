@@ -22,11 +22,15 @@ void Borrar(struct nodo *pi){
 }
 void escribir(struct nodo *pi, int tam, ofstream *myfile){
     if(pi!=NULL){
-        for (int i=0; i<tam; ++i)
-            *myfile<<pi->grafica[i]<<" ";
+	escribir(pi->menores, tam, myfile);
+        if(tam<11){
+	    for (int i=0; i<tam; ++i){
+		*myfile<<pi->grafica[i]<<" ";
+	    }
+	    *myfile<<"\t";
+	}
         *myfile<<pi->hash<<"\n";
         escribir(pi->mayores, tam, myfile);
-        escribir(pi->menores, tam, myfile);
     }
 }
 void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
@@ -55,7 +59,7 @@ int main(int argc, const char * argv[]) {
     fscanf(finput1,"%d",&tam);
     fscanf(finput1,"%lu",&ns2);
     int j;
-    //printf("nvertices=%d, tlinea=%d, tam=%d, n=%lu\n", nvertices, tlinea, tam, ns2);
+    printf("nvertices=%d, tlinea=%d, tam=%d, n=%lu\n", nvertices, tlinea, tam, ns2);
     int lineas[tam];
     unsigned long hash;
     struct nodo*arbol=NULL;
@@ -69,7 +73,7 @@ int main(int argc, const char * argv[]) {
 	if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
 	    ++contador;
     }
-    printf("Contador=%d\n", contador);
+    //printf("Contador=%d\n", contador);
     for (archivos=1; archivos<72; ++archivos) {
         sprintf(name, "soluciones%d.txt", archivos);
         //printf("Fusion: Integrando el archivo %s\n", name);

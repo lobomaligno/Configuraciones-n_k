@@ -21,17 +21,6 @@ void Borrar(struct nodo *pi){
         free(pi);
     }
 }
-/*
-void escribir(struct nodo *pi, int tam, ofstream *myfile){
-    if(pi!=NULL){
-        for (int i=0; i<tam; ++i)
-            *myfile<<pi->grafica[i]<<" ";
-        *myfile<<pi->hash<<"\n";
-        escribir(pi->mayores, tam, myfile);
-        escribir(pi->menores, tam, myfile);
-    }
-}
-*/
 void alinear(struct nodo *P, struct nodo **soluciones, int *contar){
     if (P!=NULL) {
         alinear(P->mayores, soluciones, contar);
@@ -59,16 +48,7 @@ int main(int argc, const char * argv[]) {
     fscanf(finput[0],"%lu",&ntam[0]);
     int j;
     unsigned long hash;
-    /*
-	for (i=0; i<ns1; ++i){
-	    for (j=0; j<tam; ++j)
-		fscanf(finput1,"%d",&lineas[j]);
-	    fscanf(finput1,"%lu",&hash);
-	    if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
-		++contador;
-	}
-    */
-    //printf("Contador=%d\n", contador);
+    printf("tam=%d\n", tam);
     for (archivos=1; archivos<72; ++archivos) {
         sprintf(name, "soluciones%d.txt", archivos);
         //printf("Fusion: Integrando el archivo %s\n", name);
@@ -97,34 +77,30 @@ int main(int argc, const char * argv[]) {
             exit(23);
         }
         fscanf(finput[archivos],"%lu",&ntam[archivos]);
-	/*
-	    for (i=0; i<ns2; ++i){
-		for (j=0; j<tam; ++j)
-		    fscanf(finput2,"%d",&lineas[j]);
-		fscanf(finput2,"%lu",&hash);
-		if(encontrar_o_agregar(&arbol, hash, lineas, tam)==NO_ENCONTRADO)
-		    ++contador;
-	    }
-	*/
     }
     unsigned long minHash;
+    unsigned long anterior=0;
     int lineas[72][tam];
     unsigned long hashM[72];
     bool libre;
+    bool falta[72];
     for(archivos=0; archivos<72; archivos++){
 	for (j=0; j<tam; ++j){
 	    fscanf(finput[archivos],"%d",&lineas[archivos][j]);
 	}
 	fscanf(finput[archivos],"%lu",&hashM[archivos]);
+        falta[archivos]=true;
     }
     ofstream myfile;
     sprintf(name, "SOLUCION.txt");
     myfile.open (name);
-    //myfile<<nvertices<<" "<<tlinea<<" "<<tam<<" "<<contador<<"\n";
     do{
 	minHash=ULONG_MAX;
 	for(archivos=0; archivos<72; archivos++){
 	    if(ntam[archivos]>0){
+		if(hashM[archivos]<=anterior){
+		    printf("\nAlerta\n\n");
+                }
 		if(hashM[archivos]<minHash){
 		    minHash=hashM[archivos];
 		    //printf("Hash=%lu\n", minHash);
@@ -139,25 +115,24 @@ int main(int argc, const char * argv[]) {
 		    for (j=0; j<tam; ++j){
 			myfile<<lineas[archivos][j]<<" ";
 		    }
-		    myfile<<hashM[archivos]<<"\n";
+		    myfile<<"\t";
+		    myfile<<minHash<<"\n";
 		    ++contador;
-		}
-		if(ntam[archivos]>1){
-		    for (j=0; j<tam; ++j){
-			fscanf(finput[archivos],"%d",&lineas[archivos][j]);
+		    //printf("Hash=%lu\n", minHash);
+		    if(minHash<=anterior){
+			printf("\nAlerta\n\n");
 		    }
-		    fscanf(finput[archivos],"%lu",&hashM[archivos]);
+		    anterior=minHash;
 		}
+                for (j=0; j<tam; ++j){
+		    fscanf(finput[archivos],"%d",&lineas[archivos][j]);
+                }
+		fscanf(finput[archivos],"%lu",&hashM[archivos]);
 		ntam[archivos]--;
 		//printf("El tama%co del archivo %i es %d\n", 164, archivos, ntam[archivos]);
 	    }
 	}	
     }while(minHash<ULONG_MAX);
-    /*
-    for(archivos=0; archivos<72; archivos++){
-	printf("El tama%co del archivo es %d\n", 164, ntam[archivos]);
-    }
-    */
     if(tam<nvertices-tlinea){
         printf("%lu soluciones parciales en la etapa %d\n", contador, tam);
     }
@@ -170,16 +145,9 @@ int main(int argc, const char * argv[]) {
     }
     myfile.close();
     ofstream myfile2;
-    sprintf(name, "soluciones0.txt");
+    sprintf(name, "datos.txt");
     myfile2.open (name);
-    std::ifstream ifile("SOLUCION.txt");
-    if (!ifile.is_open()) {
-        printf("Fusion 2: No esta el archivo SOLUCION.txt\n", name);
-        system("pause");
-        exit(23);	
-    }
     myfile2<<nvertices<<" "<<tlinea<<" "<<tam<<" "<<contador<<"\n";
-    myfile2<<ifile.rdbuf();
-    sprintf(name, "rm SOLUCION.txt");
-    system(name);
+    myfile2.close();
+    rename("SOLUCION.txt", "soluciones0.txt");
 }
